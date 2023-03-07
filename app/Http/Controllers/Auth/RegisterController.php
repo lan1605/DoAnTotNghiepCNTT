@@ -74,19 +74,19 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function showAdminRegisterForm()
-    {
-        return view('auth.register', ['route' => route('admin.register-view'),'title'=>'Admin']);
-    }
+    // public function showAdminRegisterForm()
+    // {
+    //     return view('auth.register', ['route' => route('admin.register-view'),'title'=>'Admin']);
+    // }
 
-    protected function createAdmin(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $admin = Admin::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('admin');
-    }
+    // protected function createAdmin(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+    //     $admin = Admin::create([
+    //         'name' => $request['name'],
+    //         'email' => $request['email'],
+    //         'password' => Hash::make($request['password']),
+    //     ]);
+    //     return redirect()->intended('admin');
+    // }
 }
