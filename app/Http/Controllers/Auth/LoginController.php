@@ -38,6 +38,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:giangvien')->except('logout');
     }
 
     public function showAdminLoginForm()
@@ -54,6 +55,24 @@ class LoginController extends Controller
 
         if (\Auth::guard('admin')->attempt($request->only('email','password'), $request->get('remember'))){
             return redirect()->intended('/admin/dashboard');
+        }
+
+        return back()->withInput($request->only('email', 'remember'));
+    }
+    //giảng viên
+    public function showTeacherLoginForm()
+    {
+        return view('giangvien.auth.login', ['route' => route('giangvien.login-view'), 'title'=>'Giảng viên']);
+    }
+
+    public function teacherLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+        if (\Auth::guard('giangvien')->attempt($request->only('email','password'), $request->get('remember'))){
+            return redirect()->intended('/admin/bai-hoc');
         }
 
         return back()->withInput($request->only('email', 'remember'));

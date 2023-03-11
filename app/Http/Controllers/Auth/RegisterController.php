@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\GiangVien;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +43,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('guest:admin');
+        $this->middleware('guest:giangvien');
     }
 
     /**
@@ -74,19 +76,34 @@ class RegisterController extends Controller
         ]);
     }
 
-    // public function showAdminRegisterForm()
-    // {
-    //     return view('auth.register', ['route' => route('admin.register-view'),'title'=>'Admin']);
-    // }
+    public function showAdminRegisterForm()
+    {
+        return view('auth.register', ['route' => route('admin.register-view'),'title'=>'Admin']);
+    }
 
-    // protected function createAdmin(Request $request)
-    // {
-    //     $this->validator($request->all())->validate();
-    //     $admin = Admin::create([
-    //         'name' => $request['name'],
-    //         'email' => $request['email'],
-    //         'password' => Hash::make($request['password']),
-    //     ]);
-    //     return redirect()->intended('admin');
-    // }
+    protected function createAdmin(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $admin = Admin::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('admin');
+    }
+    public function showTeacherRegisterForm()
+    {
+        return view('auth.register', ['route' => route('giang-vien.register-view'),'title'=>'Admin']);
+    }
+
+    protected function createTeacher(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $giangvien = GiangVien::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+        return redirect()->intended('/giangvien');
+    }
 }

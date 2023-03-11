@@ -136,7 +136,6 @@ return [
     'uploaded' => ':attribute không thể tải lên.',
     'url' => ':attribute phải là URL hợp lệ.',
     'uuid' => ':attribute phải là UUID hợp lệ.',
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

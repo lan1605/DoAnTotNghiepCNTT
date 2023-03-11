@@ -25,8 +25,11 @@
                         <div class="card-body p-4 p-sm-5">
                             <h5 class="card-title">{{ __('Đăng ký tài khoản') }}</h5>
                             <div class="card-body">
-                                    <form method="POST" action="{{ route('register') }}">
-                                    @csrf
+                                @isset($route)
+                                <form method="POST" action="{{ $route }}">
+                            @else
+                                <form method="POST" action="{{ route('register') }}">
+                            @endisset
             
                                     <div class="row g-3 mb-3">
                                         <div class="col-12">

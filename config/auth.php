@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'giangvien' => [
+            'driver' => 'session',
+            'provider' => 'giangviens',
+        ],
     ],
 
     /*
@@ -71,6 +75,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'giangviens' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\GiangVien::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -102,6 +110,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'giangviens' => [
+            'provider' => 'giangviens',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
