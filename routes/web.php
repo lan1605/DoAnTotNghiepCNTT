@@ -27,12 +27,12 @@ Route::post('/admin',[LoginController::class,'adminLogin'])->name('admin.login')
 Route::get('/giangvien',[LoginController::class,'showTeacherLoginForm'])->name('giangvien.login-view');
 Route::post('/giangvien',[LoginController::class,'teacherLogin'])->name('giangvien.login');
 
-// Route::get('/admin/register',[RegisterController::class,'showAdminRegisterForm'])->name('admin.register-view');
-// Route::post('/admin/register',[RegisterController::class,'createAdmin'])->name('admin.register');
-Route::get('/giangvien/register',[RegisterController::class,'showTeacherRegisterForm'])->name('giang-vien.register-view');
-Route::post('/giangvien/register',[RegisterController::class,'createTeacher'])->name('giang-vien.register');
+Route::get('/admin/register',[RegisterController::class,'showAdminRegisterForm'])->name('admin.register-view');
+Route::post('/admin/register',[RegisterController::class,'createAdmin'])->name('admin.register');
+// Route::get('/giangvien/register',[RegisterController::class,'showTeacherRegisterForm'])->name('giang-vien.register-view');
+// Route::post('/giangvien/register',[RegisterController::class,'createTeacher'])->name('giang-vien.register');
 
-// Route::get('/login', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('password.confirm')->get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/dashboard',function(){
     return view('admin.admin');
 })->middleware('auth:admin');

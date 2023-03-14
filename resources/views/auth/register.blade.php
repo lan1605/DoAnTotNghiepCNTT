@@ -27,9 +27,10 @@
                             <div class="card-body">
                                 @isset($route)
                                 <form method="POST" action="{{ $route }}">
-                            @else
+                                @else 
                                 <form method="POST" action="{{ route('register') }}">
-                            @endisset
+                                @endisset
+                                    @csrf
             
                                     <div class="row g-3 mb-3">
                                         <div class="col-12">
